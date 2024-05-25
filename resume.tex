@@ -1,0 +1,224 @@
+\documentclass[a4paper]{article}
+    \usepackage{hyperref}
+    \usepackage{fullpage}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{textcomp}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \textheight=5in
+    \pagestyle{empty}
+    \raggedright
+    \usepackage[left=0.4in,right=0.4in,bottom=0.3in,top=0.5in]{geometry}
+\usepackage{etoolbox,refcount}
+\usepackage{multicol}
+
+
+\newcounter{countitems}
+\newcounter{nextitemizecount}
+\newcommand{\setupcountitems}{%
+  \stepcounter{nextitemizecount}%
+  \setcounter{countitems}{0}%
+  \preto\item{\stepcounter{countitems}}%
+}
+\makeatletter
+\newcommand{\computecountitems}{%
+  \edef\@currentlabel{\number\c@countitems}%
+  \label{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\newcommand{\nextitemizecount}{%
+  \getrefnumber{countitems@\number\c@nextitemizecount}%
+}
+\newcommand{\previtemizecount}{%
+  \getrefnumber{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\makeatother    
+\newenvironment{AutoMultiColItemize}{%
+\ifnumcomp{\nextitemizecount}{>}{3}{\begin{multicols}{2}}{}%
+\setupcountitems\begin{itemize}}%
+{\end{itemize}%
+\unskip\computecountitems\ifnumcomp{\previtemizecount}{>}{3}{\end{multicols}}{}}
+
+
+    %\renewcommand{\encodingdefault}{cg}
+%\renewcommand{\rmdefault}{lgrcmr}
+
+\def\bull{\vrule height 0.7ex width .7ex depth -.1ex }
+
+% DEFINITIONS FOR RESUME %%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=black,
+    pdftitle={Harsh's Resume},
+    pdfpagemode=FullScreen,
+    }
+
+\newcommand{\area} [2] {
+    \vspace*{-9pt}
+    \begin{verse}
+        \textbf{#1}   #2 
+    \end{verse}
+}
+
+\newcommand{\lineunder} {
+    \vspace*{-8pt} \\
+    \hspace*{-18pt} \hrulefill \\
+}
+
+\newcommand{\header} [1] {
+    {\hspace*{-18pt}\vspace*{6pt} \textsc{#1}}
+    \vspace*{-6pt} \lineunder
+}
+
+\newcommand{\employer} [3] {
+    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
+}
+
+\newcommand{\contact} [3] {
+    \vspace*{-10pt}
+    \begin{center}
+        {\Huge \scshape {#1}}\\
+        #2 \\ #3
+    \end{center}
+    \vspace*{-8pt}
+}
+
+\newenvironment{achievements}{
+    \begin{list}
+        {$\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{4pt}
+    \end{list}
+}
+
+\newcommand{\schoolwithcourses} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+    \vspace*{5pt}
+}
+
+\newcommand{\school} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+}
+% END RESUME DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{document}
+\vspace*{-40pt}
+
+    
+
+%==== Profile ====%
+\vspace*{-9pt}
+\begin{center}
+	{\Huge \scshape {Aditya Pandey}}\\
+	\vspace{2mm}
+	India $\cdot$ addy2803hack@gmail.com$\cdot$  $\cdot$ \href{https://github.com/addyhacke}{GitHub} $\cdot$ 
+ \href{https://leetcode.com/u/addy28hack/}{Leetcode} $\cdot$ \href{https://www.linkedin.com/in/aditya-pandey-5a2b7424a/}{Linkedin} \\
+\end{center}
+
+\begin{center}
+Frontend, Cloud Computing and Backend Development Enthusiast\\
+\end{center}
+
+%==== Education ====%
+%==== Education ====%
+\header{Education}
+\vspace{0mm}
+\textbf{Indian Institute of Information Technology}\hfill Bhopal\\
+B.Tech in Information Technology \hfill November 2022 - Present\\
+\vspace{2mm}
+\textbf{Modern Academy} \hfill Lucknow\\
+Class XII (Senior Secondary) \hfill 2021\\
+Achieved 90\%\\
+\vspace{2mm}
+\textbf{Modern Academy} \hfill Lucknow\\
+Class X (Secondary) \hfill 2019\\
+Achieved 92.2\%
+\vspace{5mm}
+ 
+% \header{Position of Responsibility }
+% \vspace{0mm}
+
+% \textbf{GNU/Linux Users Club} \hfill IIIT Bhopal \\
+% \textit{Club Secretary} \hfill August 2022 - Present\\
+% \vspace{-2.5mm}
+% \begin{itemize} \itemsep 1pt
+% 	\item Using MacOS as my main distribution but I also have experience in most Debian based (Ubuntu), Fedora and Arch based Distributions
+% 		\item Guiding batch mates to install and use Linux distributions comfortably. Also in-charge of troubleshooting problems for them. 
+% \end{itemize}
+
+\vspace{-4mm}
+
+
+\header{Projects}
+
+{\textbf{Hospital Management System}} \hfill May 2024 \\
+\vspace{-1mm}
+\url{https://github.com/addyhacke/MERN-Project-} \\
+\vspace{-2mm}
+\begin{itemize} 
+	\item Implemented secure login mechanisms for users and administrators.
+Utilized JSON Web Tokens (JWTs) for session management and user validation.
+    \item Developed distinct, intuitive dashboards for users and administrators; streamlined navigation, enhancing user experience and reducing support requests by 40\%, leading to a 25\% increase in user engagement.
+    \item Designed to handle a growing number of users and data with ease.
+Employed best practices in MERN stack development for maintainability and scalability.
+\end{itemize}
+{\textbf{JS-DrumKit} \hfill July 2022 \\
+\vspace{-1mm}
+\url{https://github.com/addyhacke/Drum-Kit} \\
+\vspace{-4mm}
+\begin{itemize} 
+	\item Implemented event listeners to detect user keyboard or mouse input.
+Programmed functionality to trigger drum sounds upon user interaction.
+\end{itemize}
+
+{\textbf{Netflix-Login-Page}} \hfill Sept 2023 \\
+\vspace{-1mm}
+\url{https://github.com/addyhacke/netflix-login-page} \\
+\vspace{-4mm}
+\begin{itemize} 
+	\item Improved understanding of front-end web development principles.
+Enhanced skills in HTML5 and CSS3, focusing on modern web design techniques.
+\end{itemize}
+
+
+\header{Skills}
+\vspace{4mm}
+\begin{tabular}{ l l }
+	Programming Languages: & Python, C++ ,C, Javascript  \\
+	Cloud Platforms:        & Google Cloud  \\
+	Devops Tools:  & GitHub (with Github Actions), GitLab, Git \\
+	Database Management Systems: & MySQL , MongoDB \\ 
+	% Web Development:       & HTML , CSS (Bootstrap and Tailwind) , JavaScript   \\
+	Libraries / Frameworks: & ReactJs , NodeJs, NestJs, FastAPI, MongoDb, ExpressJs        \\
+	% Tech Stacks:             & MERN Stack (MongoDb , ExpressJs, ReactJs, NodeJs) \\
+	Soft Skills:           &  Leadership, Communication Skills, Organised  \\
+	
+\end{tabular}
+
+
+\vspace{7mm}
+\header{Achievements}
+\vspace{4mm}
+\begin{itemize}
+    \item[$\bullet$] \textbf{Top 3.2\%} \hfill JEE Mains 2022\\
+    Ranked among the top 3.2\% of over 1.2 million candidates in the IIT JEE 2022 exam.
+    
+    \item[$\bullet$] \textbf{Ranked 3458} \hfill Leetcode Weekly Contest 398\\
+    Achieved a ranking of 3458 out of 31,000 participants in Leetcode's Weekly Contest 398.
+    
+   
+    
+   \item[$\bullet$] \textbf{Google Cloud Skill Boost} \hfill GDSC IIIT Bhopal\\
+    Successfully completed the Google Cloud Skill Boost program, earning 11 badges, and achieving a ranking among the top 1000 participants in the Arcade Game program organized by GDSC IIIT Bhopal.\\
+    {\textit{Cloud ID: \href{https://www.cloudskillsboost.google/public_profiles/c56c4a79-dd72-406c-8810-c0ea84697193}{c56c4a79-dd72-406c-8810-c0ea84697193}}}
+
+
+
+     \item[$\bullet$] \textbf{Team Lead} \hfill Inspire Society\\
+    Served as a Team Lead at Inspire Society, managing various activities and initiatives.
+\end{itemize}
+
+
+\end{document}
